@@ -29,8 +29,6 @@ public class SaveHotbarWidget extends HotbarWidget {
 
     @Override
     public void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
-        RenderSystem.enableBlend();
-
         context.drawTexture(RenderLayer::getGuiTexturedOverlay,
                 BASE_TEXTURE,
                 this.getX(),

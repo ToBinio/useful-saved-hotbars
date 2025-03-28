@@ -92,8 +92,6 @@ public class SavedHotbarScreen extends Screen {
 
         super.render(context, mouseX, mouseY, delta);
 
-        RenderSystem.enableBlend();
-
         context.drawTexture(RenderLayer::getGuiTexturedOverlay,
                 BG_TEXTURE,
                 this.width / 2 - BG_WIDTH / 2,
