@@ -1,9 +1,11 @@
 package tobinio.usefulsavedhotbars.client;
 
+import com.mojang.blaze3d.pipeline.RenderPipeline;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.option.HotbarStorage;
@@ -92,7 +94,7 @@ public class SavedHotbarScreen extends Screen {
 
         super.render(context, mouseX, mouseY, delta);
 
-        context.drawTexture(RenderLayer::getGuiTexturedOverlay,
+        context.drawTexture(RenderPipelines.GUI_TEXTURED,
                 BG_TEXTURE,
                 this.width / 2 - BG_WIDTH / 2,
                 this.height / 2 - BG_HEIGHT / 2,

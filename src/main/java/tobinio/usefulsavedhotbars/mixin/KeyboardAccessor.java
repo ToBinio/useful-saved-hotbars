@@ -12,5 +12,5 @@ public interface KeyboardAccessor {
     MinecraftClient getClient();
 
     @Invoker ("debugLog")
-    void invokeDebugLog(String key, Object... args);
+    void invokeDebugLog(String key);
 }

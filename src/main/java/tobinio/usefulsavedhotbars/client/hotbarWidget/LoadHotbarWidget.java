@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.option.HotbarStorageEntry;
 import net.minecraft.client.render.RenderLayer;
@@ -27,7 +28,7 @@ public class LoadHotbarWidget extends HotbarWidget {
 
     @Override
     public void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
-        context.drawTexture(RenderLayer::getGuiTexturedOverlay,
+        context.drawTexture(RenderPipelines.GUI_TEXTURED,
                 BASE_TEXTURE,
                 this.getX(),
                 this.getY(),
@@ -45,7 +46,7 @@ public class LoadHotbarWidget extends HotbarWidget {
         }
 
         if (this.selected) {
-            context.drawTexture(RenderLayer::getGuiTexturedOverlay,
+            context.drawTexture(RenderPipelines.GUI_TEXTURED,
                     BOARDER_TEXTURE,
                     this.getX(),
                     this.getY(),
