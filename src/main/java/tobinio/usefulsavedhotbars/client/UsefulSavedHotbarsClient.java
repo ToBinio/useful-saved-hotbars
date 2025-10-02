@@ -7,6 +7,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import org.lwjgl.glfw.GLFW;
+import tobinio.usefulsavedhotbars.UsefulSavedHotbars;
 import tobinio.usefulsavedhotbars.mixin.KeyboardAccessor;
 
 public class UsefulSavedHotbarsClient implements ClientModInitializer {
@@ -20,13 +21,15 @@ public class UsefulSavedHotbarsClient implements ClientModInitializer {
     public static KeyBinding LoadHotbarsKeyBinding;
     public static KeyBinding SaveHotbarsKeyBinding;
 
+    public static final KeyBinding.Category SAVED_HOTBAR = KeyBinding.Category.create(UsefulSavedHotbars.id("savedhotbar"));
+
     @Override
     public void onInitializeClient() {
-        LoadHotbarsKeyBindingF3 = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.usefulsavedhotbars.loadf3", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "category.usefulsavedhotbars.savedhotbar"));
-        SaveHotbarsKeyBindingF3 = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.usefulsavedhotbars.savef3", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "category.usefulsavedhotbars.savedhotbar"));
+        LoadHotbarsKeyBindingF3 = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.useful_saved_hotbars.loadf3", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, SAVED_HOTBAR));
+        SaveHotbarsKeyBindingF3 = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.useful_saved_hotbars.savef3", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, SAVED_HOTBAR));
 
-        LoadHotbarsKeyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.usefulsavedhotbars.load", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F6, "category.usefulsavedhotbars.savedhotbar"));
-        SaveHotbarsKeyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.usefulsavedhotbars.save", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F7, "category.usefulsavedhotbars.savedhotbar"));
+        LoadHotbarsKeyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.useful_saved_hotbars.load", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F6, SAVED_HOTBAR));
+        SaveHotbarsKeyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.useful_saved_hotbars.save", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F7, SAVED_HOTBAR));
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (LoadHotbarsKeyBinding.wasPressed()) {

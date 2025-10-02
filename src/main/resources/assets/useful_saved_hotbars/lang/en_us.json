@@ -1,7 +1,7 @@
 {
-  "key.usefulsavedhotbars.load": "Load Hotbar (toggle)",
-  "key.usefulsavedhotbars.save": "Save Hotbar (toggle)",
-  "key.usefulsavedhotbars.loadf3": "Load Hotbar (F3 + )",
-  "key.usefulsavedhotbars.savef3": "Save Hotbar (F3 + )",
-  "category.usefulsavedhotbars.savedhotbar": "Useful Saved Hotbars"
+  "key.useful_saved_hotbars.load": "Load Hotbar (toggle)",
+  "key.useful_saved_hotbars.save": "Save Hotbar (toggle)",
+  "key.useful_saved_hotbars.loadf3": "Load Hotbar (F3 + )",
+  "key.useful_saved_hotbars.savef3": "Save Hotbar (F3 + )",
+  "key.category.useful_saved_hotbars.savedhotbar": "Useful Saved Hotbars"
 }

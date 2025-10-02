@@ -6,8 +6,10 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gl.RenderPipelines;
+import net.minecraft.client.gui.Click;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.input.KeyInput;
 import net.minecraft.client.option.HotbarStorage;
 import net.minecraft.client.option.HotbarStorageEntry;
 import net.minecraft.client.render.RenderLayer;
@@ -123,21 +125,21 @@ public class SavedHotbarScreen extends Screen {
     }
 
     private void checkForCloseF3() {
-        if (!InputUtil.isKeyPressed(this.client.getWindow().getHandle(), GLFW.GLFW_KEY_F3)) {
+        if (!InputUtil.isKeyPressed(this.client.getWindow(), GLFW.GLFW_KEY_F3)) {
             apply();
         }
     }
 
-    private boolean checkForClose(int keyCode, int scanCode) {
+    private boolean checkForClose(KeyInput input) {
         switch (this.type) {
             case LOAD -> {
-                if (UsefulSavedHotbarsClient.LoadHotbarsKeyBinding.matchesKey(keyCode, scanCode)) {
+                if (UsefulSavedHotbarsClient.LoadHotbarsKeyBinding.matchesKey(input)) {
                     apply();
                     return true;
                 }
             }
             case SAVE -> {
-                if (UsefulSavedHotbarsClient.SaveHotbarsKeyBinding.matchesKey(keyCode, scanCode)) {
+                if (UsefulSavedHotbarsClient.SaveHotbarsKeyBinding.matchesKey(input)) {
                     apply();
                     return true;
                 }
@@ -153,18 +155,18 @@ public class SavedHotbarScreen extends Screen {
     }
 
     @Override
-    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+    public boolean mouseClicked(Click click, boolean doubled) {
         if (mouseUsedForSelection) {
             apply();
             return true;
         }
 
-        return super.mouseClicked(mouseX, mouseY, button);
+        return super.mouseClicked(click, doubled);
     }
 
     @Override
-    public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-        if (toggleKeyPressed(keyCode, scanCode)) {
+    public boolean keyPressed(KeyInput input) {
+        if (toggleKeyPressed(input)) {
             this.selected++;
             this.selected %= this.hotbarWidgets.size();
             this.mouseUsedForSelection = false;
@@ -172,26 +174,26 @@ public class SavedHotbarScreen extends Screen {
             return true;
         }
 
-        if (checkForClose(keyCode, scanCode)) {
+        if (checkForClose(input)) {
             return true;
         }
 
-        return super.keyPressed(keyCode, scanCode, modifiers);
+        return super.keyPressed(input);
     }
 
-    private boolean toggleKeyPressed(int keyCode, int scanCode) {
+    private boolean toggleKeyPressed(KeyInput input) {
         switch (this.type) {
             case LOAD_F3 -> {
-                return UsefulSavedHotbarsClient.LoadHotbarsKeyBindingF3.matchesKey(keyCode, scanCode);
+                return UsefulSavedHotbarsClient.LoadHotbarsKeyBindingF3.matchesKey(input);
             }
             case SAVE_F3 -> {
-                return UsefulSavedHotbarsClient.SaveHotbarsKeyBindingF3.matchesKey(keyCode, scanCode);
+                return UsefulSavedHotbarsClient.SaveHotbarsKeyBindingF3.matchesKey(input);
             }
             case LOAD -> {
-                return UsefulSavedHotbarsClient.SaveHotbarsKeyBinding.matchesKey(keyCode, scanCode);
+                return UsefulSavedHotbarsClient.SaveHotbarsKeyBinding.matchesKey(input);
             }
             case SAVE -> {
-                return UsefulSavedHotbarsClient.LoadHotbarsKeyBinding.matchesKey(keyCode, scanCode);
+                return UsefulSavedHotbarsClient.LoadHotbarsKeyBinding.matchesKey(input);
             }
             default -> {
                 return false;
